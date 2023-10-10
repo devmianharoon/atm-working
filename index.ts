@@ -25,7 +25,8 @@ const user: USER[] = [{
 console.log(user);
 
 async function atm(user: USER[]) {
-    var preTranstion:string [] = [];
+   
+    var preTranstion: string[] = [];
     const answer = await inquirer.prompt([{
         type: "input",
         name: 'userName',
@@ -33,7 +34,7 @@ async function atm(user: USER[]) {
     }, {
         type: 'password',
         name: 'pin',
-        message: 'Please enter your valid username',
+        message: 'Please enter your valid PIN',
         mask: '*',
 
     }])
@@ -42,6 +43,7 @@ async function atm(user: USER[]) {
     const users = user.find((u) => u.userName === userName && u.pin === Number(pin));
     if (users) {
         console.log(`Welcome Back ${users.name}`);
+        while (true) {
         const answer = await inquirer.prompt({
             type: "rawlist",
             name: 'operation',
@@ -50,6 +52,7 @@ async function atm(user: USER[]) {
         })
         if (answer.operation === "Cheak Balence") {
             console.log(`Your Balance is ${users.balance}`);
+
         }
         else if (answer.operation === "Withdraw") {
             console.log("Withdraw");
@@ -63,25 +66,25 @@ async function atm(user: USER[]) {
 
             if (question.withdraw === "500") {
                 console.log('Sucessfuly Withdraw');
-                console.log(`Your current balance is (${users.balance - 500})`);
+                users.balance-500
+                console.log(`Your current balance is (${users.balance })`);
                 preTranstion.push("500")
 
 
             } else if (question.withdraw == "1000") {
                 console.log('Sucessfuly Withdraw');
-                console.log(`Your current balance is (${users.balance - 1000})`);
-                preTranstion.push("1000")
-            } else if (question.withdraw == "1000") {
-                console.log('Sucessfuly Withdraw');
-                console.log(`Your current balance is (${users.balance - 1000})`);
+                users.balance-5000
+                console.log(`Your current balance is (${users.balance })`);
                 preTranstion.push("1000")
             } else if (question.withdraw == "5000") {
                 console.log('Sucessfuly Withdraw');
-                console.log(`Your current balance is (${users.balance - 5000})`);
+                users.balance-5000
+                console.log(`Your current balance is (${users.balance })`);
                 preTranstion.push("5000")
             } else if (question.withdraw == "10000") {
                 console.log('Sucessfuly Withdraw');
-                console.log(`Your current balance is (${users.balance - 10000})`);
+                users.balance-5000
+                console.log(`Your current balance is ${users.balance }`);
                 preTranstion.push("10000")
             }
 
@@ -89,13 +92,12 @@ async function atm(user: USER[]) {
         else if (answer.operation === "Previous Transtion") {
             console.log("Previous Transtion");
             console.log(preTranstion);
-            
-        }
 
+        }
+        }
     } else {
         console.log("Invalid username or PIN.");
     }
-
 }
 
 
